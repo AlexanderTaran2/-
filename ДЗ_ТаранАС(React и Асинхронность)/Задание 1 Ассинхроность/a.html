@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdvancedPromise Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .demo-section {
+            margin: 25px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        h3 {
+            color: #444;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 4px;
+            background: #e9ecef;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+        .progress {
+            background: #fff3cd;
+            color: #856404;
+            border-left: 4px solid #ffc107;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid #17a2b8;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .stat-item {
+            background: white;
+            padding: 12px;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-weight: bold;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        .step-indicator {
+            display: inline-block;
+            background: #6c757d;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Advanced JavaScript Patterns Demo</h1>
+        
+        <!-- Задание 1: AdvancedPromise -->
+        <div class="demo-section">
+            <h3>1. AdvancedPromise - Продвинутые Promise-паттерны</h3>
+            <p>Класс с методами для повторных попыток, таймаутов и управления очередями</p>
+            
+            <div class="controls">
+                <button onclick="testRetry()">Тестировать retry()</button>
+                <button onclick="testTimeout()">Тестировать timeout()</button>
+                <button onclick="testQueue()">Тестировать queue()</button>
+                <button onclick="testCombined()">Тестировать комбинацию</button>
+            </div>
+            
+            <div id="retry-result" class="result"></div>
+            <div id="timeout-result" class="result"></div>
+            <div id="queue-result" class="result"></div>
+            <div id="combined-result" class="result"></div>
+        </div>
+
+        <!-- Задание 2: processDataAsync -->
+        <div class="demo-section">
+            <h3>2. Асинхронный обработчик данных (processDataAsync)</h3>
+            <p>Обработка массива данных с ограничением параллелизма, повторными попытками и управлением паузой</p>
+            
+            <div class="controls">
+                <button onclick="startProcessing()" id="start-btn">Начать обработку</button>
+                <button onclick="pauseProcessing()" id="pause-btn" disabled>Пауза</button>
+                <button onclick="resumeProcessing()" id="resume-btn" disabled>Продолжить</button>
+                <button onclick="stopProcessing()" id="stop-btn" disabled>Остановить</button>
+            </div>
+
+            <div class="stats" id="processing-stats">
+                <div class="stat-item">Всего: <span id="stat-total">0</span></div>
+                <div class="stat-item">Успешно: <span id="stat-successful">0</span></div>
+                <div class="stat-item">Ошибки: <span id="stat-failed">0</span></div>
+                <div class="stat-item">Повторы: <span id="stat-retries">0</span></div>
+                <div class="stat-item">Прогресс: <span id="stat-progress">0%</span></div>
+            </div>
+
+            <div id="processing-result" class="result"></div>
+        </div>
+
+        <!-- Задание 3: AsyncPipeline -->
+        <div class="demo-section">
+            <h3>3. AsyncPipeline - Асинхронные пайплайны обработки</h3>
+            <p>Построение цепочек обработки данных с последовательным и параллельным выполнением</p>
+            
+            <div class="code-example">
+// Пример использования пайплайна<br>
+const pipeline = new AsyncPipeline()<br>
+    .addStep(async (data) => data.filter(x => x > 0))<br>
+    .addStep(async (data) => data.map(x => x * 2))<br>
+    .addStep(async (data) => data.reduce((a, b) => a + b, 0));<br>
+<br>
+const result = await pipeline.execute([-1, 2, -3, 4, 5]);<br>
+// Результат: 22
+            </div>
+            
+            <div class="controls">
+                <button onclick="testBasicPipeline()">Базовый пайплайн</button>
+                <button onclick="testPipelineWithRetry()">Пайплайн с retry</button>
+                <button onclick="testPipelineWithTimeout()">Пайплайн с таймаутом</button>
+                <button onclick="testParallelPipelines()">Параллельные пайплайны</button>
+                <button onclick="testComplexPipeline()">Сложный пайплайн</button>
+            </div>
+
+            <div id="pipeline-result" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== ЗАДАНИЕ 1: AdvancedPromise ====================
+        class AdvancedPromise {
+            static retry(promiseFn, maxAttempts = 3, delay = 1000) {
+                return new Promise((resolve, reject) => {
+                    const attempt = (attemptNumber) => {
+                        promiseFn()
+                            .then(resolve)
+                            .catch((error) => {
+                                if (attemptNumber >= maxAttempts) {
+                                    reject(error);
+                                } else {
+                                    const nextDelay = delay * Math.pow(2, attemptNumber - 1);
+                                    console.log(`Попытка ${attemptNumber} не удалась. Повтор через ${nextDelay}мс`);
+                                    setTimeout(() => attempt(attemptNumber + 1), nextDelay);
+                                }
+                            });
+                    };
+                    attempt(1);
+                });
+            }
+
+            static timeout(promise, ms) {
+                return new Promise((resolve, reject) => {
+                    const timeoutId = setTimeout(() => {
+                        reject(new Error(`Таймаут: операция не завершена за ${ms}мс`));
+                    }, ms);
+
+                    promise
+                        .then((result) => {
+                            clearTimeout(timeoutId);
+                            resolve(result);
+                        })
+                        .catch((error) => {
+                            clearTimeout(timeoutId);
+                            reject(error);
+                        });
+                });
+            }
+
+            static queue(tasks, concurrency = 1) {
+                return new Promise((resolve) => {
+                    const results = [];
+                    let index = 0;
+                    let running = 0;
+                    let completed = 0;
+
+                    const runNext = () => {
+                        while (running < concurrency && index < tasks.length) {
+                            const currentIndex = index++;
+                            running++;
+                            
+                            tasks[currentIndex]()
+                                .then((result) => {
+                                    results[currentIndex] = { status: 'fulfilled', value: result };
+                                })
+                                .catch((error) => {
+                                    results[currentIndex] = { status: 'rejected', reason: error };
+                                })
+                                .finally(() => {
+                                    running--;
+                                    completed++;
+                                    
+                                    if (completed === tasks.length) {
+                                        resolve(results);
+                                    } else {
+                                        runNext();
+                                    }
+                                });
+                        }
+                    };
+
+                    runNext();
+                });
+            }
+        }
+
+        // ==================== ЗАДАНИЕ 2: DataProcessor ====================
+        class DataProcessor {
+            constructor(data, processorFn, options = {}) {
+                this.data = data;
+                this.processorFn = processorFn;
+                this.concurrency = options.concurrency || 1;
+                this.retryAttempts = options.retryAttempts || 0;
+                this.delay = options.delay || 0;
+                
+                this.results = [];
+                this.stats = {
+                    total: data.length,
+                    successful: 0,
+                    failed: 0,
+                    retries: 0
+                };
+                
+                this.currentIndex = 0;
+                this.running = 0;
+                this.isPaused = false;
+                this.resolve = null;
+                this.reject = null;
+                this.isStopped = false;
+            }
+
+            async processWithRetry(item, index, attempts = 0) {
+                if (this.isStopped) return;
+
+                try {
+                    const result = await this.processorFn(item, index);
+                    this.results[index] = { status: 'fulfilled', value: result };
+                    this.stats.successful++;
+                    this.updateStats();
+                    return result;
+                } catch (error) {
+                    if (attempts < this.retryAttempts && !this.isStopped) {
+                        this.stats.retries++;
+                        this.updateStats();
+                        console.log(`Повторная попытка для элемента ${item} (попытка ${attempts + 1})`);
+                        await this.delayPromise(this.delay);
+                        return this.processWithRetry(item, index, attempts + 1);
+                    } else {
+                        this.results[index] = { status: 'rejected', reason: error };
+                        this.stats.failed++;
+                        this.updateStats();
+                        throw error;
+                    }
+                }
+            }
+
+            delayPromise(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            async processItem() {
+                if (this.currentIndex >= this.data.length || this.isPaused || this.isStopped) {
+                    return;
+                }
+
+                const index = this.currentIndex++;
+                const item = this.data[index];
+                this.running++;
+
+                try {
+                    await this.processWithRetry(item, index);
+                } catch (error) {
+                    // Ошибка уже обработана в processWithRetry
+                } finally {
+                    this.running--;
+                    if (!this.isStopped) {
+                        this.processNext();
+                    }
+                }
+            }
+
+            processNext() {
+                while (this.running < this.concurrency && 
+                       this.currentIndex < this.data.length && 
+                       !this.isPaused && 
+                       !this.isStopped) {
+                    this.processItem();
+                }
+
+                if (this.running === 0 && 
+                    this.currentIndex >= this.data.length && 
+                    this.resolve) {
+                    this.resolve({
+                        results: this.results,
+                        stats: this.stats
+                    });
+                }
+            }
+
+            pause() {
+                this.isPaused = true;
+            }
+
+            resume() {
+                if (this.isPaused && !this.isStopped) {
+                    this.isPaused = false;
+                    this.processNext();
+                }
+            }
+
+            stop() {
+                this.isStopped = true;
+                this.isPaused = false;
+            }
+
+            updateStats() {
+                const progress = ((this.stats.successful + this.stats.failed) / this.stats.total * 100).toFixed(1);
+                
+                document.getElementById('stat-total').textContent = this.stats.total;
+                document.getElementById('stat-successful').textContent = this.stats.successful;
+                document.getElementById('stat-failed').textContent = this.stats.failed;
+                document.getElementById('stat-retries').textContent = this.stats.retries;
+                document.getElementById('stat-progress').textContent = progress + '%';
+            }
+
+            async start() {
+                return new Promise((resolve, reject) => {
+                    this.resolve = resolve;
+                    this.reject = reject;
+                    this.processNext();
+                });
+            }
+        }
+
+        async function processDataAsync(data, processorFn, options = {}) {
+            const processor = new DataProcessor(data, processorFn, options);
+            return processor.start();
+        }
+
+        // ==================== ЗАДАНИЕ 3: AsyncPipeline ====================
+        class AsyncPipeline {
+            constructor() {
+                this.steps = [];
+            }
+            
+            addStep(stepFn) {
+                this.steps.push(stepFn);
+                return this; // Для чейнинга
+            }
+            
+            async execute(input) {
+                let result = input;
+                let stepNumber = 1;
+                
+                for (const step of this.steps) {
+                    console.log(`Выполнение шага ${stepNumber} с данными:`, result);
+                    result = await step(result);
+                    console.log(`Шаг ${stepNumber} завершен. Результат:`, result);
+                    stepNumber++;
+                }
+                return result;
+            }
+            
+            static async parallel(pipelines, input) {
+                const results = await Promise.all(
+                    pipelines.map((pipeline, index) => 
+                        pipeline.execute(input).then(result => ({ pipeline: index, result }))
+                    )
+                );
+                return results;
+            }
+            
+            // Дополнительный метод для обработки с таймаутом
+            withTimeout(ms) {
+                const originalExecute = this.execute.bind(this);
+                this.execute = async (input) => {
+                    return AdvancedPromise.timeout(originalExecute(input), ms);
+                };
+                return this;
+            }
+            
+            // Дополнительный метод для повторных попыток
+            withRetry(maxAttempts = 3, delay = 1000) {
+                const originalExecute = this.execute.bind(this);
+                this.execute = async (input) => {
+                    return AdvancedPromise.retry(() => originalExecute(input), maxAttempts, delay);
+                };
+                return this;
+            }
+        }
+
+        // ==================== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ====================
+        let currentProcessor = null;
+
+        // ==================== ТЕСТЫ ДЛЯ PIPELINE ====================
+        async function testBasicPipeline() {
+            const resultDiv = document.getElementById('pipeline-result');
+            resultDiv.innerHTML = '🔄 Запуск базового пайплайна...';
+            resultDiv.className = 'result progress';
+
+            try {
+                const pipeline = new AsyncPipeline()
+                    .addStep(async (data) => {
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                        return data.filter(x => x > 0);
+                    })
+                    .addStep(async (data) => {
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                        return data.map(x => x * 2);
+                    })
+                    .addStep(async (data) => {
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                        return data.reduce((a, b) => a + b, 0);
+                    });
+
+                const result = await pipeline.execute([-1, 2, -3, 4, 5]);
+                
+                resultDiv.innerHTML = `✅ Базовый пайплайн выполнен успешно!\n\n` +
+                    `Входные данные: [-1, 2, -3, 4, 5]\n` +
+                    `Шаг 1: filter(x => x > 0) → [2, 4, 5]\n` +
+                    `Шаг 2: map(x => x * 2) → [4, 8, 10]\n` +
+                    `Шаг 3: reduce((a, b) => a + b, 0) → 22\n\n` +
+                    `🎯 Финальный результат: ${result}`;
+                resultDiv.classList.add('success');
+            } catch (error) {
+                resultDiv.innerHTML = `❌ Ошибка в пайплайне: ${error.message}`;
+                resultDiv.classList.add('error');
+            }
+        }
+
+        async function testPipelineWithRetry() {
+            const resultDiv = document.getElementById('pipeline-result');
+            resultDiv.innerHTML = '🔄 Запуск пайплайна с повторными попытками...';
+            resultDiv.className = 'result progress';
+
+            let attemptCount = 0;
+
+            try {
+                const pipeline = new AsyncPipeline()
+                    .addStep(async (data) => {
+                        attemptCount++;
+                        await new Promise(resolve => setTimeout(resolve, 200));
+                        // Имитация случайных ошибок
+                        if (attemptCount < 3 && Math.random() < 0.7) {
+                            throw new Error(`Временная ошибка на шаге 1 (попытка ${attemptCount})`);
+                        }
+                        return data.map(x => x * x);
+                    })
+                    .addStep(async (data) => {
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                        return data.filter(x => x % 2 === 0);
+                    })
+                    .withRetry(3, 500); // Добавляем повторные попытки
+
+                const result = await pipeline.execute([1, 2, 3, 4, 5]);
+                
+                resultDiv.innerHTML = `✅ Пайплайн с retry выполнен успешно!\n\n` +
+                    `Количество попыток: ${attemptCount}\n` +
+                    `Входные данные: [1, 2, 3, 4, 5]\n` +
+                    `Шаг 1: map(x => x * x) → [1, 4, 9, 16, 25]\n` +
+                    `Шаг 2: filter(x => x % 2 === 0) → [4, 16]\n\n` +
+                    `🎯 Финальный результат: [${result.join(', ')}]`;
+                resultDiv.classList.add('success');
+            } catch (error) {
+                resultDiv.innerHTML = `❌ Ошибка в пайплайне: ${error.message}\n\n` +
+                    `Всего попыток: ${attemptCount}`;
+                resultDiv.classList.add('error');
+            }
+        }
+
+        async function testPipelineWithTimeout() {
+            const resultDiv = document.getElementById('pipeline-result');
+            resultDiv.innerHTML = '🔄 Запуск пайплайна с таймаутом...';
+            resultDiv.className = 'result progress';
+
+            try {
+                const pipeline = new AsyncPipeline()
+                    .addStep(async (data) => {
+                        await new Promise(resolve => setTimeout(resolve, 1000));
+                        return data.toUpperCase();
+                    })
+                    .addStep(async (data) => {
+                        await new Promise(resolve => setTimeout(resolve, 1000));
+                        return data.split('').reverse().join('');
+                    })
+                    .withTimeout(1500); // Таймаут меньше общего времени выполнения
+
+                const result = await pipeline.execute('hello');
+                
+                resultDiv.innerHTML = `✅ Пайплайн с таймаутом выполнен успешно!\n\n` +
+                    `Результат: ${result}`;
+                resultDiv.classList.add('success');
+            } catch (error) {
+                resultDiv.innerHTML = `❌ Таймаут пайплайна: ${error.message}\n\n` +
+                    `Пайплайн был прерван из-за превышения времени выполнения`;
+                resultDiv.classList.add('error');
+            }
+        }
+
+        async function testParallelPipelines() {
+            const resultDiv = document.getElementById('pipeline-result');
+            resultDiv.innerHTML = '🔄 Запуск параллельных пайплайнов...';
+            resultDiv.className = 'result progress';
+
+            try {
+                // Создаем несколько различных пайплайнов
+                const pipeline1 = new AsyncPipeline()
+                    .addStep(async (data) => data.filter(x => x % 2 === 0))
+                    .addStep(async (data) => data.map(x => x * 10));
+
+                const pipeline2 = new AsyncPipeline()
+                    .addStep(async (data) => data.filter(x => x % 2 !== 0))
+                    .addStep(async (data) => data.map(x => x * 5));
+
+                const pipeline3 = new AsyncPipeline()
+                    .addStep(async (data) => data.map(x => x * x))
+                    .addStep(async (data) => data.filter(x => x > 10));
+
+                const pipelines = [pipeline1, pipeline2, pipeline3];
+                const input = [1, 2, 3, 4, 5, 6, 7, 8];
+
+                const results = await AsyncPipeline.parallel(pipelines, input);
+                
+                let output = `✅ Параллельные пайплайны выполнены успешно!\n\n`;
+                output += `Входные данные: [${input.join(', ')}]\n\n`;
+                
+                results.forEach((result, index) => {
+                    output += `Пайплайн ${index + 1}: [${result.result.join(', ')}]\n`;
+                });
+                
+                output += `\n🎯 Все пайплайны завершены параллельно`;
+                resultDiv.innerHTML = output;
+                resultDiv.classList.add('success');
+            } catch (error) {
+                resultDiv.innerHTML = `❌ Ошибка в параллельных пайплайнах: ${error.message}`;
+                resultDiv.classList.add('error');
+            }
+        }
+
+        async function testComplexPipeline() {
+            const resultDiv = document.getElementById('pipeline-result');
+            resultDiv.innerHTML = '🔄 Запуск сложного пайплайна...';
+            resultDiv.className = 'result progress';
+
+            try {
+                const pipeline = new AsyncPipeline()
+                    .addStep(async (data) => {
+                        await new Promise(resolve => setTimeout(resolve, 300));
+                        return data.split('').reverse().join('');
+                    })
+                    .addStep(async (data) => {
+                        await new Promise(resolve => setTimeout(resolve, 200));
+                        return data.toUpperCase();
+                    })
+                    .addStep(async (data) => {
+                        await new Promise(resolve => setTimeout(resolve, 400));
+                        return data + '!';
+                    })
+                    .addStep(async (data) => {
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                        return `Результат: "${data}" (длина: ${data.length})`;
+                    })
+                    .withRetry(2, 300)
+                    .withTimeout(3000);
+
+                const result = await pipeline.execute('javascript');
+                
+                resultDiv.innerHTML = `✅ Сложный пайплайн выполнен успешно!\n\n` +
+                    `Входные данные: "javascript"\n` +
+                    `Шаг 1: reverse() → "tpircsavaj"\n` +
+                    `Шаг 2: toUpperCase() → "TPIRCSAVAJ"\n` +
+                    `Шаг 3: add '!' → "TPIRCSAVAJ!"\n` +
+                    `Шаг 4: format result → "${result}"\n\n` +
+                    `🎯 Финальный результат: ${result}`;
+                resultDiv.classList.add('success');
+            } catch (error) {
+                resultDiv.innerHTML = `❌ Ошибка в сложном пайплайне: ${error.message}`;
+                resultDiv.classList.add('error');
+            }
+        }
+
+        // ==================== СУЩЕСТВУЮЩИЕ ФУНКЦИИ (без изменений) ====================
+        async function startProcessing() {
+            const resultDiv = document.getElementById('processing-result');
+            resultDiv.innerHTML = 'Запуск обработки данных...';
+            resultDiv.className = 'result progress';
+
+            document.getElementById('start-btn').disabled = true;
+            document.getElementById('pause-btn').disabled = false;
+            document.getElementById('stop-btn').disabled = false;
+            document.getElementById('resume-btn').disabled = true;
+
+            const testData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            
+            const processorFn = async (num, index) => {
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                if (Math.random() < 0.3 && num % 3 !== 0) {
+                    throw new Error(`Временная ошибка для числа ${num}`);
+                }
+                
+                return { 
+                    original: num, 
+                    processed: num * 2,
+                    timestamp: new Date().toLocaleTimeString()
+                };
+            };
+
+            const options = {
+                concurrency: 2,
+                retryAttempts: 2,
+                delay: 1000
+            };
+
+            try {
+                currentProcessor = new DataProcessor(testData, processorFn, options);
+                const result = await currentProcessor.start();
+                
+                resultDiv.innerHTML = `✅ Обработка завершена!\n\n` +
+                    `Статистика:\n` +
+                    `- Всего элементов: ${result.stats.total}\n` +
+                    `- Успешно: ${result.stats.successful}\n` +
+                    `- Ошибки: ${result.stats.failed}\n` +
+                    `- Повторных попыток: ${result.stats.retries}\n\n` +
+                    `Результаты:\n${JSON.stringify(result.results, null, 2)}`;
+                resultDiv.classList.add('success');
+                
+            } catch (error) {
+                resultDiv.innerHTML = `❌ Ошибка обработки: ${error.message}`;
+                resultDiv.classList.add('error');
+            } finally {
+                document.getElementById('start-btn').disabled = false;
+                document.getElementById('pause-btn').disabled = true;
+                document.getElementById('resume-btn').disabled = true;
+                document.getElementById('stop-btn').disabled = true;
+                currentProcessor = null;
+            }
+        }
+
+        function pauseProcessing() {
+            if (currentProcessor) {
+                currentProcessor.pause();
+                document.getElementById('pause-btn').disabled = true;
+                document.getElementById('resume-btn').disabled = false;
+                document.getElementById('processing-result').innerHTML += '\n⏸️ Обработка приостановлена';
+            }
+        }
+
+        function resumeProcessing() {
+            if (currentProcessor) {
+                currentProcessor.resume();
+                document.getElementById('pause-btn').disabled = false;
+                document.getElementById('resume-btn').disabled = true;
+                document.getElementById('processing-result').innerHTML += '\n▶️ Обработка продолжена';
+            }
+        }
+
+        function stopProcessing() {
+            if (currentProcessor) {
+                currentProcessor.stop();
+                document.getElementById('start-btn').disabled = false;
+                document.getElementById('pause-btn').disabled = true;
+                document.getElementById('resume-btn').disabled = true;
+                document.getElementById('stop-btn').disabled = true;
+                document.getElementById('processing-result').innerHTML += '\n🛑 Обработка остановлена';
+                currentProcessor = null;
+            }
+        }
+
+        function testRetry() {
+            const resultDiv = document.getElementById('retry-result');
+            resultDiv.innerHTML = 'Запуск retry...';
+            resultDiv.className = 'result';
+
+            let attemptCount = 0;
+            
+            AdvancedPromise.retry(
+                () => {
+                    attemptCount++;
+                    console.log(`Попытка ${attemptCount}`);
+                    
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            if (attemptCount < 2) {
+                                reject(new Error(`Сервер недоступен (попытка ${attemptCount})`));
+                            } else {
+                                resolve({ data: 'Успешный ответ после ' + attemptCount + ' попыток' });
+                            }
+                        }, 500);
+                    });
+                },
+                3,
+                1000
+            )
+            .then(result => {
+                resultDiv.innerHTML = `✅ Успех: ${JSON.stringify(result, null, 2)}`;
+                resultDiv.classList.add('success');
+            })
+            .catch(error => {
+                resultDiv.innerHTML = `❌ Ошибка: ${error.message}`;
+                resultDiv.classList.add('error');
+            });
+        }
+
+        function testTimeout() {
+            const resultDiv = document.getElementById('timeout-result');
+            resultDiv.innerHTML = 'Запуск timeout...';
+            resultDiv.className = 'result';
+
+            const slowPromise = new Promise(resolve => {
+                setTimeout(() => resolve('Медленный ответ'), 3000);
+            });
+
+            AdvancedPromise.timeout(slowPromise, 2000)
+                .then(result => {
+                    resultDiv.innerHTML = `✅ Успех: ${result}`;
+                    resultDiv.classList.add('success');
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = `❌ Ошибка: ${error.message}`;
+                    resultDiv.classList.add('error');
+                });
+        }
+
+        function testQueue() {
+            const resultDiv = document.getElementById('queue-result');
+            resultDiv.innerHTML = 'Запуск queue...';
+            resultDiv.className = 'result';
+
+            const tasks = [
+                () => new Promise(resolve => setTimeout(() => resolve('Задача 1'), 1000)),
+                () => new Promise(resolve => setTimeout(() => resolve('Задача 2'), 800)),
+                () => new Promise(resolve => setTimeout(() => resolve('Задача 3'), 600)),
+                () => new Promise(resolve => setTimeout(() => resolve('Задача 4'), 1200)),
+                () => new Promise((_, reject) => setTimeout(() => reject('Ошибка в задаче 5'), 500))
+            ];
+
+            AdvancedPromise.queue(tasks, 2)
+                .then(results => {
+                    resultDiv.innerHTML = '✅ Результаты очереди:\n' + 
+                        results.map((r, i) => `Задача ${i + 1}: ${JSON.stringify(r)}`).join('\n');
+                    resultDiv.classList.add('success');
+                });
+        }
+
+        function testCombined() {
+            const resultDiv = document.getElementById('combined-result');
+            resultDiv.innerHTML = 'Запуск retry + timeout...';
+            resultDiv.className = 'result';
+
+            let attemptCount = 0;
+            
+            const promiseWithRetry = AdvancedPromise.retry(
+                () => {
+                    attemptCount++;
+                    console.log(`Комбинированная попытка ${attemptCount}`);
+                    
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            if (attemptCount < 2) {
+                                reject(new Error('Временная ошибка'));
+                            } else {
+                                resolve('Успех после повторных попыток!');
+                            }
+                        }, 1500);
+                    });
+                },
+                3,
+                500
+            );
+
+            AdvancedPromise.timeout(promiseWithRetry, 4000)
+                .then(result => {
+                    resultDiv.innerHTML = `✅ Комбинированный успех: ${result}`;
+                    resultDiv.classList.add('success');
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = `❌ Комбинированная ошибка: ${error.message}`;
+                    resultDiv.classList.add('error');
+                });
+        }
+    </script>
+</body>
+</html>
