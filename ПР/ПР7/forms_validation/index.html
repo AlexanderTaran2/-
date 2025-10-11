@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма регистрации</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Регистрация</h1>
+        <form id="registrationForm" novalidate>
+            <fieldset>
+                <legend>Личная информация</legend>
+                
+                <div class="form-group">
+                    <label for="firstName">Имя *</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                    <span class="error-message" id="firstNameError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastName">Фамилия *</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                    <span class="error-message" id="lastNameError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" name="phone" pattern="[\+]\d{1,3}\s?[\(]?\d{1,4}[\)]?\s?\d{1,4}[\s-]?\d{1,4}[\s-]?\d{1,9}" placeholder="+7 (999) 999-99-99">
+                    <span class="error-message" id="phoneError"></span>
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Учётные данные</legend>
+                
+                <div class="form-group">
+                    <label for="username">Имя пользователя *</label>
+                    <input type="text" id="username" name="username" required minlength="3" maxlength="20" pattern="[a-zA-Z0-9_]+">
+                    <span class="error-message" id="usernameError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Пароль *</label>
+                    <input type="password" id="password" name="password" required minlength="8">
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Подтверждение пароля *</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <span class="error-message" id="confirmPasswordError"></span>
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Дополнительная информация</legend>
+                
+                <div class="form-group">
+                    <label for="birthDate">Дата рождения</label>
+                    <input type="date" id="birthDate" name="birthDate">
+                    <span class="error-message" id="birthDateError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="country">Страна</label>
+                    <select id="country" name="country">
+                        <option value="">Выберите страну</option>
+                        <option value="ru">Россия</option>
+                        <option value="by">Беларусь</option>
+                        <option value="kz">Казахстан</option>
+                        <option value="ua">Украина</option>
+                        <option value="other">Другая</option>
+                    </select>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter" checked>
+                    <label for="newsletter">Подписаться на рассылку</label>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">Я согласен с условиями использования *</label>
+                    <span class="error-message" id="termsError"></span>
+                </div>
+            </fieldset>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                <button type="reset" class="btn btn-secondary">Очистить форму</button>
+            </div>
+        </form>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
