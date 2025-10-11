@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ботанический сад "Зеленая гавань" - CSS Практика</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="main-header" class="site-header">
+        <h1 class="title">Ботанический сад "Зеленая гавань"</h1>
+        <p class="subtitle">Исследуем, сохраняем и восхищаемся миром растений</p>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#about" class="nav-link">О нас</a></li>
+            <li><a href="#collections" class="nav-link">Коллекции</a></li>
+            <li><a href="#events" class="nav-link active">Мероприятия</a></li>
+            <li><a href="#visit" class="nav-link">Посетителям</a></li>
+            <li><a href="#contact" class="nav-link">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="about" class="section">
+            <h2 class="section-title">О нашем саде</h2>
+            <p class="intro-text">Основанный в 1985 году, наш ботанический сад занимает территорию 15 гектаров и содержит более 5000 видов растений.</p>
+        </section>
+
+        <section id="collections" class="section featured">
+            <h2 class="section-title special">Наши коллекции</h2>
+            <div class="collections-grid">
+                <article class="collection-card">
+                    <h3>Тропические растения</h3>
+                    <p>Более 1000 видов из тропических регионов</p>
+                </article>
+                <article class="collection-card important">
+                    <h3>Редкие орхидеи</h3>
+                    <p>Уникальная коллекция из 300 видов орхидей</p>
+                </article>
+                <article class="collection-card">
+                    <h3>Японский сад</h3>
+                    <p>Традиционные растения японской культуры</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="events" class="section">
+            <h2 class="section-title">Ближайшие мероприятия</h2>
+            <ul class="events-list">
+                <li class="event-item">Экскурсия "Тропики дома" - 25 марта</li>
+                <li class="event-item">Мастер-класс по суккулентам - 28 марта</li>
+                <li class="event-item">Фестиваль тюльпанов - 1-30 апреля</li>
+                <li class="event-item">Ночная экскурсия - 5 апреля</li>
+            </ul>
+        </section>
+
+        <aside class="sidebar">
+            <div class="weather-info">
+                <h3>Погода в саду</h3>
+                <p>Сегодня: +18°C, солнечно</p>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2024 Ботанический сад "Зеленая гавань". Все права защищены.</p>
+        <p class="contact-info">Телефон: +7 (495) 123-45-67</p>
+    </footer>
+</body>
+</html>
