@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Практика</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Основной макет с именованными областями -->
+        <header class="header">
+            <h1>CSS Grid Layout</h1>
+            <nav class="nav">
+                <a href="#">Главная</a>
+                <a href="#">О нас</a>
+                <a href="#">Услуги</a>
+                <a href="#">Контакты</a>
+            </nav>
+        </header>
+
+        <aside class="sidebar">
+            <h3>Боковая панель</h3>
+            <ul>
+                <li><a href="#">Ссылка 1</a></li>
+                <li><a href="#">Ссылка 2</a></li>
+                <li><a href="#">Ссылка 3</a></li>
+                <li><a href="#">Ссылка 4</a></li>
+                <li><a href="#">Ссылка 5</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <section class="intro">
+                <h2>Добро пожаловать в мир CSS Grid!</h2>
+                <p>CSS Grid Layout - это мощная система для создания двумерных макетов.</p>
+            </section>
+
+            <!-- Вложенная Grid-сетка для галереи -->
+            <section class="gallery-section">
+                <h3>Галерея изображений</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200/4a6fa5/ffffff?text=Image+1" alt="Изображение 1">
+                        <p>Подпись к изображению 1</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200/28a745/ffffff?text=Image+2" alt="Изображение 2">
+                        <p>Подпись к изображению 2</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200/dc3545/ffffff?text=Image+3" alt="Изображение 3">
+                        <p>Подпись к изображению 3</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200/ffc107/333333?text=Image+4" alt="Изображение 4">
+                        <p>Подпись к изображению 4</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200/6f42c1/ffffff?text=Image+5" alt="Изображение 5">
+                        <p>Подпись к изображению 5</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/300x200/fd7e14/ffffff?text=Image+6" alt="Изображение 6">
+                        <p>Подпись к изображению 6</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Адаптивная сетка с auto-fit и minmax -->
+            <section class="features-section">
+                <h3>Наши особенности</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>Быстро</h4>
+                        <p>Высокая производительность и скорость загрузки</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Надежно</h4>
+                        <p>Стабильная работа и надежное хранение данных</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Доступно</h4>
+                        <p>Доступные цены и различные тарифные планы</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Качественно</h4>
+                        <p>Высокое качество предоставляемых услуг</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Grid для футера -->
+        <footer class="footer">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>О компании</h4>
+                    <p>Мы создаем современные веб-решения с использованием передовых технологий.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>Email: info@example.com<br>Телефон: +7 (999) 999-99-99</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Социальные сети</h4>
+                    <div class="social-links">
+                        <a href="#">VK</a>
+                        <a href="#">Telegram</a>
+                        <a href="#">YouTube</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Быстрые ссылки</h4>
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Условия использования</a>
+                    <a href="#">Карта сайта</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CSS Grid Практика. Все права защищены.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
