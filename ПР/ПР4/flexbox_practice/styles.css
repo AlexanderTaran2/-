@@ -1,0 +1,113 @@
+/* Стили для шапки */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+/* Стили для навигации */
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 1rem;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.navbar a:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+/* Стили для карточек */
+.cards {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.card {
+    background-color: #f4f4f4;
+    padding: 2rem;
+    border-radius: 8px;
+    flex: 1;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+/* Основной макет */
+.container {
+    display: flex;
+    min-height: 400px;
+}
+
+.main-content {
+    flex: 3;
+    background-color: #e9e9e9;
+    padding: 1rem;
+}
+
+.sidebar {
+    flex: 1;
+    background-color: #d4d4d4;
+    padding: 1rem;
+}
+
+/* Футер с колонками */
+.footer {
+    display: flex;
+    background-color: #333;
+    color: white;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.footer-column {
+    flex: 1;
+}
+/* Центрирование */
+.header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .cards {
+        flex-direction: column;
+    }
+    
+    .footer {
+        flex-direction: column;
+    }
+    
+    .navbar {
+        flex-wrap: wrap;
+    }
+}
+.order-example {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.item {
+    padding: 2rem;
+    background-color: #ffeb3b;
+    border-radius: 4px;
+}
+
+.item1 { order: 3; }
+.item2 { order: 1; }
+.item3 { order: 2; }
