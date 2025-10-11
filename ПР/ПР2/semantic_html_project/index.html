@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Официальный сайт Ботанического сада - уникальная коллекция растений со всего мира">
+    <title>Ботанический сад | Официальный сайт</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: #2d5a27;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #a8d5a5;
+        }
+        
+        main {
+            display: flex;
+            margin: 2rem 0;
+        }
+        
+        article {
+            flex: 3;
+            background: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-right: 2rem;
+        }
+        
+        aside {
+            flex: 1;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background-color: #2d5a27;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: #2d5a27;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .article-meta {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        figure {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        figcaption {
+            font-style: italic;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .gallery img {
+            flex: 1 1 200px;
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #2d5a27;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        form {
+            margin: 1.5rem 0;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            background-color: #2d5a27;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #1e3d1a;
+        }
+        
+        .sidebar-widget {
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar-widget h3 {
+            border-bottom: 2px solid #2d5a27;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-widget ul {
+            list-style: none;
+        }
+        
+        .sidebar-widget li {
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sidebar-widget a {
+            color: #2d5a27;
+            text-decoration: none;
+        }
+        
+        .sidebar-widget a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
+            
+            article {
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 0 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Ботанический сад</div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#collections">Коллекции</a></li>
+                        <li><a href="#events">Мероприятия</a></li>
+                        <li><a href="#visit">Посетителям</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <article>
+                <section id="about">
+                    <h1>Добро пожаловать в Ботанический сад</h1>
+                    <p class="article-meta">Опубликовано: <time datetime="2023-10-15">15 октября 2023</time></p>
+                    
+                    <p>Наш ботанический сад - это уникальное место, где собрана богатая коллекция растений со всего мира. Мы занимаемся сохранением биоразнообразия, научными исследованиями и образовательной деятельностью.</p>
+                    
+                    <figure>
+                        <img src="https://via.placeholder.com/800x400/4CAF50/FFFFFF?text=Главный+вход+ботанического+сада" alt="Главный вход ботанического сада">
+                        <figcaption>Главный вход в ботанический сад</figcaption>
+                    </figure>
+                    
+                    <p>Основанный в 1950 году, наш сад занимает площадь более 50 гектаров и включает в себя несколько тематических зон: оранжерею тропических растений, альпинарий, японский сад, розарий и дендрарий.</p>
+                </section>
+                
+                <section id="collections">
+                    <h2>Наши коллекции</h2>
+                    <p>В нашем саду представлены растения из различных климатических зон:</p>
+                    
+                    <div class="gallery">
+                        <img src="https://via.placeholder.com/300x200/4CAF50/FFFFFF?text=Тропическая+оранжерея" alt="Тропическая оранжерея">
+                        <img src="https://via.placeholder.com/300x200/4CAF50/FFFFFF?text=Японский+сад" alt="Японский сад">
+                        <img src="https://via.placeholder.com/300x200/4CAF50/FFFFFF?text=Альпинарий" alt="Альпинарий">
+                    </div>
+                    
+                    <h3>Основные коллекции растений</h3>
+                    <ul>
+                        <li>Тропические и субтропические растения (более 1000 видов)</li>
+                        <li>Хвойные деревья и кустарники</li>
+                        <li>Редкие и исчезающие виды растений региона</li>
+                        <li>Лекарственные растения</li>
+                        <li>Декоративные цветы и кустарники</li>
+                    </ul>
+                </section>
+                
+                <section id="events">
+                    <h2>Мероприятия и экскурсии</h2>
+                    <p>Мы регулярно проводим образовательные мероприятия для посетителей всех возрастов:</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Мероприятие</th>
+                                <th>Дата</th>
+                                <th>Время</th>
+                                <th>Целевая аудитория</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Экскурсия "Тропические растения"</td>
+                                <td><time datetime="2023-10-20">20 октября 2023</time></td>
+                                <td>11:00</td>
+                                <td>Взрослые и дети от 10 лет</td>
+                            </tr>
+                            <tr>
+                                <td>Мастер-класс "Осенний гербарий"</td>
+                                <td><time datetime="2023-10-22">22 октября 2023</time></td>
+                                <td>14:00</td>
+                                <td>Дети 7-12 лет</td>
+                            </tr>
+                            <tr>
+                                <td>Лекция "Лекарственные растения"</td>
+                                <td><time datetime="2023-10-25">25 октября 2023</time></td>
+                                <td>16:00</td>
+                                <td>Взрослые</td>
+                            </tr>
+                            <tr>
+                                <td>Экскурсия "Японский сад"</td>
+                                <td><time datetime="2023-10-28">28 октября 2023</time></td>
+                                <td>12:00</td>
+                                <td>Все возрасты</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                
+                <section id="subscription">
+                    <h2>Подписка на новости</h2>
+                    <p>Подпишитесь на нашу рассылку, чтобы первыми узнавать о новых выставках, мероприятиях и специальных предложениях:</p>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Имя:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <button type="submit">Подписаться</button>
+                    </form>
+                </section>
+            </article>
+            
+            <aside>
+                <div class="sidebar-widget">
+                    <h3>Режим работы</h3>
+                    <p>Пн-Пт: 9:00 - 18:00</p>
+                    <p>Сб-Вс: 9:00 - 20:00</p>
+                    <p>Касса закрывается за час до окончания работы сада</p>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h3>Стоимость билетов</h3>
+                    <ul>
+                        <li>Взрослый: 300 руб.</li>
+                        <li>Детский (7-14 лет): 150 руб.</li>
+                        <li>Пенсионеры: 150 руб.</li>
+                        <li>Дети до 7 лет: бесплатно</li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h3>Ближайшие события</h3>
+                    <ul>
+                        <li><a href="#">Выставка осенних цветов - с 15 октября</a></li>
+                        <li><a href="#">Мастер-класс по созданию икебаны - 18 октября</a></li>
+                        <li><a href="#">Ночная экскурсия по оранжерее - 27 октября</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h3>Как добраться</h3>
+                    <p>Мы находимся по адресу: ул. Ботаническая, д. 15</p>
+                    <p>Ближайшая станция метро: "Центральная"</p>
+                    <p>Автобусы: 15, 23, 47 до остановки "Ботанический сад"</p>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Ботанический сад. Все права защищены.</p>
+            <address>
+                Контакты: ул. Ботаническая, д. 15 | тел.: +7 (123) 456-78-90 | email: info@botanicalgarden.ru
+            </address>
+            <p>Следите за нами в социальных сетях: 
+                <a href="#" style="color: white;">ВКонтакте</a> | 
+                <a href="#" style="color: white;">Instagram</a> | 
+                <a href="#" style="color: white;">Facebook</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
