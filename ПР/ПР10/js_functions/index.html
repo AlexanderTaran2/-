@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions - ПР10</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; }
+        .test-result { padding: 10px; margin: 5px 0; border-radius: 4px; border-left: 4px solid; }
+        .pass { background: #d4edda; border-color: #28a745; }
+        .fail { background: #f8d7da; border-color: #dc3545; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px; }
+        .section { margin: 30px 0; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>Практическая работа №10: JavaScript функции</h1>
+    
+    <div class="section">
+        <h2>Основные функции</h2>
+        <button onclick="runBasicTests()">Тест основных функций</button>
+    </div>
+    
+    <div class="section">
+        <h2>Рекурсия и HOF</h2>
+        <button onclick="runHofTests()">Тест функций высшего порядка</button>
+    </div>
+    
+    <div class="section">
+        <h2>Сложные функции</h2>
+        <button onclick="runAdvancedTests()">Тест сложных функций</button>
+    </div>
+    
+    <div class="section">
+        <h2>Все тесты</h2>
+        <button onclick="runAllTests()">Запустить ВСЕ тесты</button>
+    </div>
+    
+    <div id="testResults"></div>
+    
+    <script src="functions.js"></script>
+    <script src="tests.js"></script>
+</body>
+</html>
