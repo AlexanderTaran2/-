@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Practice</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="main-header">
+        <h1>Практическая работа: Манипуляции DOM</h1>
+    </header>
+
+    <main>
+        <!-- Часть 1: Создание элементов -->
+        <section id="part1">
+            <h2>Часть 1: Создание элементов</h2>
+            <div id="target1" class="target-container"></div>
+            <button onclick="createCard('Тестовая карточка', 'Это содержимое карточки')">Создать карточку</button>
+            <button onclick="createList(['Элемент 1', 'Элемент 2', 'Элемент 3'])">Создать список</button>
+        </section>
+
+        <!-- Часть 2: Навигация по DOM -->
+        <section id="part2">
+            <h2>Часть 2: Навигация по DOM</h2>
+            <div id="parent-element" class="parent-container">
+                <div class="child">Дочерний элемент 1</div>
+                <div class="child">Дочерний элемент 2</div>
+                <div class="child special">Специальный элемент</div>
+                <div class="child">Дочерний элемент 4</div>
+            </div>
+            <div class="output">
+                <p>Количество дочерних элементов: <span id="child-count">0</span></p>
+                <p>Текст специального элемента: <span id="special-text"></span></p>
+                <p>Цвет фона родителя: <span id="parent-bg"></span></p>
+                <button onclick="testNavigation()">Протестировать навигацию</button>
+            </div>
+        </section>
+
+        <!-- Часть 3: Работа с классами и стилями -->
+        <section id="part3">
+            <h2>Часть 3: Классы и стили</h2>
+            <div id="style-target" class="style-box">Элемент для стилизации</div>
+            <button id="toggle-style">Переключить стиль</button>
+            <button onclick="changeHeaderColor()">Изменить цвет заголовка</button>
+            <button onclick="animateElement()">Запустить анимацию</button>
+        </section>
+
+        <!-- Часть 4: Обработка событий -->
+        <section id="part4">
+            <h2>Часть 4: Обработка событий</h2>
+            <div class="event-section">
+                <button id="click-btn">Кликни меня</button>
+                <p>Счетчик кликов: <span id="click-counter">0</span></p>
+            </div>
+            <div class="event-section">
+                <input type="text" id="text-input" placeholder="Введите текст...">
+                <p>Отображение: <span id="input-display"></span></p>
+            </div>
+        </section>
+
+        <!-- Часть 5: Динамические списки -->
+        <section id="part5">
+            <h2>Часть 5: Динамические списки</h2>
+            <div class="list-controls">
+                <input type="text" id="item-input" placeholder="Новый элемент списка">
+                <button id="add-item-btn">Добавить элемент</button>
+                <button id="clear-list-btn">Очистить список</button>
+            </div>
+            <ul id="dynamic-list" class="dynamic-list"></ul>
+        </section>
+
+        <!-- Часть 6: Работа с формами -->
+        <section id="part6">
+            <h2>Часть 6: Формы и валидация</h2>
+            <form id="user-form" class="user-form">
+                <div class="form-group">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Возраст:</label>
+                    <input type="number" id="age" name="age" min="1" max="120" required>
+                </div>
+                <button type="submit">Отправить</button>
+            </form>
+            <div id="form-output" class="form-output"></div>
+        </section>
+    </main>
+
+    <script src="dom-tasks.js"></script>
+    <script src="dom-tests.js"></script>
+</body>
+</html>

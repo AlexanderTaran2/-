@@ -1,0 +1,269 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    transition: background-color 0.3s ease;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    background: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+/* Стили для карточек */
+.target-container {
+    border: 2px dashed #ccc;
+    padding: 1rem;
+    margin: 1rem 0;
+    min-height: 100px;
+    border-radius: 5px;
+}
+
+.card {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.card h4 {
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    color: #6c757d;
+}
+
+/* Стили для навигации */
+.parent-container {
+    background: #e9ecef;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1rem 0;
+}
+
+.child {
+    background: white;
+    padding: 0.5rem;
+    margin: 0.25rem 0;
+    border-radius: 3px;
+    border-left: 4px solid #667eea;
+}
+
+.child.special {
+    background: #fff3cd;
+    border-left-color: #ffc107;
+}
+
+.output {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+/* Стили для работы с классами */
+.style-box {
+    background: #007bff;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    margin: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.active-style {
+    background: #28a745 !important;
+    transform: scale(1.05);
+}
+
+.animated {
+    animation: pulse 1s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Стили для событий */
+.event-section {
+    background: #f8f9fa;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin: 0.5rem 0;
+}
+
+/* Стили для динамических списков */
+.list-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.list-controls input {
+    flex: 1;
+}
+
+.dynamic-list {
+    list-style: none;
+    background: #f8f9fa;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+    border-left: 4px solid #667eea;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+/* Стили для форм */
+.user-form {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.25);
+}
+
+button {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: #5a6fd8;
+}
+
+.form-output {
+    margin-top: 1rem;
+}
+
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin: 0.5rem 0;
+    border-left: 4px solid #dc3545;
+}
+
+.success-message {
+    background: #d1edff;
+    color: #004085;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    border-left: 4px solid #007bff;
+}
+
+.success-message h3 {
+    margin-bottom: 0.5rem;
+    color: #0056b3;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .list-controls {
+        flex-direction: column;
+    }
+    
+    body {
+        padding: 10px;
+    }
+    
+    section {
+        padding: 1rem;
+    }
+}
