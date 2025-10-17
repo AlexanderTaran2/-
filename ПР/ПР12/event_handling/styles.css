@@ -1,0 +1,291 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.task-section {
+    background: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h2 {
+    color: #667eea;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+/* Стили для кнопок */
+button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Анимации */
+.pulse {
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Цветовой блок */
+.color-box {
+    width: 200px;
+    height: 150px;
+    background: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    margin: 1rem 0;
+    transition: background-color 0.3s ease;
+}
+
+/* Списки */
+.item-list {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.item {
+    background: #f8f9fa;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.item.selected {
+    background: #e3f2fd;
+    border-left-color: #2196f3;
+    transform: translateX(10px);
+}
+
+.delete {
+    background: #dc3545;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.delete:hover {
+    background: #c82333;
+}
+
+/* Формы и инпуты */
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.prevent-link {
+    display: inline-block;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border: 2px solid #667eea;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.prevent-form {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+/* Вывод информации */
+.output {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    border-left: 4px solid #667eea;
+    min-height: 60px;
+    font-family: 'Courier New', monospace;
+    white-space: pre-wrap;
+}
+
+.timer {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+/* Контейнер для изображений */
+#image-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+#image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Секции таймеров и оптимизации */
+.timer-section, .optimization-section {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Кастомные кнопки */
+.custom-btn {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+}
+
+.custom-btn:hover {
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+.pulse-btn {
+    background: linear-gradient(135deg, #00b894, #00a085);
+}
+
+.pulse-btn:hover {
+    box-shadow: 0 5px 15px rgba(0, 184, 148, 0.4);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    main {
+        padding: 0 10px;
+    }
+    
+    .task-section {
+        padding: 1rem;
+    }
+    
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .controls {
+        flex-direction: column;
+    }
+}
+
+/* Стили для сообщений */
+.message {
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.message.info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
