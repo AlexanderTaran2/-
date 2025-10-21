@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Асинхронные операции JavaScript</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Тестирование асинхронных операций</h1>
+        
+        <!-- Секция 1: Промисы -->
+        <section class="section">
+            <h2>1. Основы промисов</h2>
+            <div class="button-group">
+                <button id="basic-promise" class="btn">Базовый промис</button>
+                <button id="promise-chain" class="btn">Цепочка промисов</button>
+                <button id="promise-error" class="btn">Ошибка промиса</button>
+            </div>
+            <div id="promise-output" class="output">Результат появится здесь...</div>
+        </section>
+
+        <!-- Секция 2: Async/Await -->
+        <section class="section">
+            <h2>2. Async/Await</h2>
+            <div class="button-group">
+                <button id="basic-async" class="btn">Базовый async/await</button>
+                <button id="async-error" class="btn">Ошибка async</button>
+                <button id="async-parallel" class="btn">Параллельное выполнение</button>
+            </div>
+            <div id="async-output" class="output">Результат появится здесь...</div>
+        </section>
+
+        <!-- Секция 3: Работа с API -->
+        <section class="section">
+            <h2>3. Работа с API</h2>
+            <div class="button-group">
+                <button id="fetch-users" class="btn">Получить пользователей</button>
+                <button id="fetch-post" class="btn">Создать пост</button>
+                <button id="fetch-error" class="btn">Тест ошибок API</button>
+            </div>
+            <div id="api-output" class="output">Результат API...</div>
+            <div id="api-data" class="output data-output"></div>
+        </section>
+
+        <!-- Секция 4: Таймеры -->
+        <section class="section">
+            <h2>4. Асинхронные таймеры</h2>
+            <div class="button-group">
+                <button id="start-interval" class="btn">Старт интервал</button>
+                <button id="stop-interval" class="btn">Стоп интервал</button>
+                <button id="delay-promise" class="btn">Тест задержек</button>
+            </div>
+            <div id="interval-output" class="output">Интервал...</div>
+            <div id="timer-output" class="output">Таймеры...</div>
+        </section>
+
+        <!-- Секция 5: Обработка ошибок -->
+        <section class="section">
+            <h2>5. Обработка ошибок</h2>
+            <div class="button-group">
+                <button id="try-catch" class="btn">Try/Catch</button>
+                <button id="multiple-errors" class="btn">Множественные ошибки</button>
+                <button id="retry-pattern" class="btn">Повторные попытки</button>
+            </div>
+            <div id="error-output" class="output">Ошибки...</div>
+        </section>
+
+        <!-- Секция 6: Параллельные операции -->
+        <section class="section">
+            <h2>6. Параллельные операции</h2>
+            <div class="button-group">
+                <button id="promise-all" class="btn">Promise.all</button>
+                <button id="promise-race" class="btn">Promise.race</button>
+                <button id="promise-allSettled" class="btn">Promise.allSettled</button>
+            </div>
+            <div id="parallel-output" class="output">Параллельные операции...</div>
+        </section>
+
+        <!-- Секция 7: Реальные сценарии -->
+        <section class="section">
+            <h2>7. Реальные сценарии</h2>
+            <div class="button-group">
+                <button id="sequential-requests" class="btn">Последовательные запросы</button>
+                <button id="upload-simulation" class="btn">Симуляция загрузки</button>
+                <button id="cache-requests" class="btn">Кэширование</button>
+            </div>
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar">0%</div>
+            </div>
+            <div id="scenario-output" class="output">Реальные сценарии...</div>
+        </section>
+    </div>
+
+    <script src="async-tasks.js"></script>
+</body>
+</html>
