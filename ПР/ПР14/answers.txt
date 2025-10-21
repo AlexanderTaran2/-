@@ -1,0 +1,10 @@
+1. Fetch API современнее, использует Promises, проще в использовании, XMLHttpRequest сложнее но поддерживает прогресс 
+2. Fetch не считает HTTP ошибки исключениями, нужно проверять response.ok, обрабатывать через then/catch 
+3. GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS - для разных CRUD операций 
+4. headers.get/set, полезные: Authorization, Content-Type, Accept, User-Agent 
+5. PUT заменяет весь ресурс, PATCH частично обновляет, использовать PUT когда известен полный ресурс 
+6. Basic Auth: headers {Authorization: "Basic base64"}, Bearer: "Bearer token", OAuth2 сложнее 
+7. AbortController для отмены, полезно при таймаутах или уходе со страницы 
+8. response.json(), .text(), .blob(), .formData() для разных форматов, FormData для файлов 
+9. Promise.all для параллельных запросов, кэширование, пагинация, ленивая загрузка 
+10. Проверка response.ok, обработка ошибок, таймауты, кэширование, безопасность заголовков
