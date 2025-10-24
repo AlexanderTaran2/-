@@ -1,0 +1,88 @@
+Ответы на вопросы для самоконтроля
+1. В чем разница между Link и NavLink в React Router?
+**Link** - это компонент для создания навигационных ссылок, который заменяет обычный тег `<a>`. Он предотвращает полную перезагрузку страницы.
+**NavLink** - это специальная версия Link, которая добавляет классы стилей для активного состояния. Полезен для навигационных меню, где нужно выделять текущую страницу.
+Пример:
+```jsx
+<NavLink 
+  to="/about" 
+  className={({ isActive }) => isActive ? "active" : ""}
+>
+  О нас
+</NavLink>
+2. Как получить параметры из URL в компоненте?
+Для получения параметров используется хук useParams():
+jsx
+import { useParams } from 'react-router-dom';
+const ProductDetail = () => {
+  const { id } = useParams(); // Получаем параметр :id из URL
+  return <div>Товар ID: {id}</div>;
+};
+3. Что такое программная навигация и как ее реализовать?
+Программная навигация - это переход между страницами с помощью JavaScript кода, а не клика по ссылке.
+Реализуется с помощью хука useNavigate():
+jsx
+import { useNavigate } from 'react-router-dom';
+const MyComponent = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/target-page'); // Переход на страницу
+    navigate(-1); // Назад
+    navigate('/page', { state: { data: 'value' } }); // С передачей состояния
+  };
+  return <button onClick={handleClick}>Перейти</button>;
+};
+4. Как передать данные между маршрутами?
+Есть несколько способов:
+Через параметры URL:
+jsx
+navigate('/user/123');
+Через состояние (state):
+jsx
+navigate('/target', { 
+  state: { user: userData, message: 'Hello' } 
+});
+// Получение в целевом компоненте:
+const location = useLocation();
+const data = location.state;
+Через query-параметры:
+jsx
+navigate('/search?query=react&page=1');
+5. Что делает компонент Routes?
+Компонент Routes - это контейнер, который группирует все маршруты приложения. Он отвечает за:
+Сопоставление текущего URL с определенным маршрутом
+Рендеринг соответствующего компонента
+Обработку вложенных маршрутов
+6. Как создать защищённый маршрут?
+Защищенные маршруты создаются путем обертывания Route в кастомный компонент:
+jsx
+const ProtectedRoute = ({ children }) => {
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
+// Использование:
+<Route 
+  path="/admin" 
+  element={
+    <ProtectedRoute>
+      <AdminPanel />
+    </ProtectedRoute>
+  } 
+/>
+7. В чем разница между useNavigate и redirect?
+useNavigate - хук для программной навигации внутри компонентов. Возвращает функцию для навигации.
+redirect - компонент для перенаправления, который можно использовать в рендеринге или в loader функциях (в React Router v6.4+).
+Пример redirect:
+jsx
+import { redirect } from 'react-router-dom';
+// В loader функции
+export async function loader() {
+  const user = await getUser();
+  if (!user) {
+    return redirect('/login');
+  }
+  return user;
+}
