@@ -1,0 +1,219 @@
+/* src/components/hooks/HooksComponents.css */
+.hooks-components {
+    display: grid;
+    gap: 30px;
+  }
+  
+  .counter-hooks {
+    padding: 20px;
+    border: 2px solid #20c997;
+    border-radius: 8px;
+    background: white;
+  }
+  
+  .counter-hooks .counter-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .counter-hooks button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background: #20c997;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .user-profile {
+    padding: 20px;
+    border: 2px solid #e83e8c;
+    border-radius: 8px;
+    background: white;
+    max-width: 400px;
+  }
+  
+  .edit-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .edit-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .edit-form input,
+  .edit-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .edit-form textarea {
+    resize: vertical;
+  }
+  
+  .user-profile button {
+    padding: 10px 20px;
+    background: #e83e8c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .profile-info p {
+    margin: 10px 0;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 4px;
+  }
+  
+  .effect-demo {
+    padding: 20px;
+    border: 2px solid #6f42c1;
+    border-radius: 8px;
+    background: white;
+  }
+  
+  .demo-section {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    background: #f8f9fa;
+  }
+  
+  .demo-section h4 {
+    margin-top: 0;
+  }
+  
+  .demo-section input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .console-info {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 15px;
+  }
+  
+  .local-storage-demo {
+    padding: 20px;
+    border: 2px solid #fd7e14;
+    border-radius: 8px;
+    background: white;
+    max-width: 400px;
+  }
+  
+  .local-storage-demo .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .local-storage-demo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .local-storage-demo input,
+  .local-storage-demo select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .fetch-demo {
+    padding: 20px;
+    border: 2px solid #17a2b8;
+    border-radius: 8px;
+    background: white;
+    max-width: 400px;
+  }
+  
+  .todos-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+  }
+  
+  .todos-list li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .todos-list li.completed {
+    text-decoration: line-through;
+    color: #888;
+  }
+  
+  .loading {
+    color: #17a2b8;
+    font-style: italic;
+  }
+  
+  .error {
+    color: #dc3545;
+    background: #f8d7da;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .theme-toggle {
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    transition: all 0.3s ease;
+  }
+  
+  .theme-toggle.light {
+    border: 2px solid #f8f9fa;
+    background: white;
+    color: #333;
+  }
+  
+  .theme-toggle.dark {
+    border: 2px solid #495057;
+    background: #343a40;
+    color: white;
+  }
+  
+  .theme-toggle button {
+    padding: 10px 15px;
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  
+  .theme-preview {
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  
+  .theme-toggle.light .theme-preview {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+  }
+  
+  .theme-toggle.dark .theme-preview {
+    background: #495057;
+    border: 1px solid #6c757d;
+  }

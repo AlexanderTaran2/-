@@ -1,0 +1,128 @@
+/* src/components/lifecycle/LifecycleComponents.css */
+.lifecycle-components {
+    display: grid;
+    gap: 30px;
+  }
+  
+  .timer {
+    padding: 20px;
+    border: 2px solid #17a2b8;
+    border-radius: 8px;
+    background: white;
+  }
+  
+  .timer-display {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #17a2b8;
+    margin: 20px 0;
+    font-family: 'Courier New', monospace;
+  }
+  
+  .timer-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  
+  .timer-controls button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background: #17a2b8;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .timer-controls button:hover {
+    background: #138496;
+  }
+  
+  .window-size-tracker {
+    padding: 20px;
+    border: 2px solid #6f42c1;
+    border-radius: 8px;
+    background: white;
+  }
+  
+  .size-info {
+    margin: 15px 0;
+  }
+  
+  .size-info p {
+    margin: 5px 0;
+    font-size: 18px;
+  }
+  
+  .size-visual {
+    margin-top: 20px;
+  }
+  
+  .window-visual {
+    border: 2px solid #6f42c1;
+    background: rgba(111, 66, 193, 0.1);
+    margin: 0 auto;
+    transition: all 0.3s ease;
+  }
+  
+  .data-fetcher {
+    padding: 20px;
+    border: 2px solid #fd7e14;
+    border-radius: 8px;
+    background: white;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .data-fetcher button {
+    padding: 10px 15px;
+    background: #fd7e14;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 15px;
+  }
+  
+  .data-fetcher button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .loading {
+    color: #fd7e14;
+    font-style: italic;
+    margin: 15px 0;
+  }
+  
+  .error {
+    color: #dc3545;
+    background: #f8d7da;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 15px 0;
+  }
+  
+  .user-data {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .user-data .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .user-data h4 {
+    margin: 10px 0 5px 0;
+    color: #333;
+  }
+  
+  .user-data p {
+    margin: 5px 0;
+    color: #666;
+  }

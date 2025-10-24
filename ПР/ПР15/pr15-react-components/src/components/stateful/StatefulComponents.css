@@ -1,0 +1,250 @@
+/* src/components/stateful/StatefulComponents.css */
+.stateful-components {
+    display: grid;
+    gap: 30px;
+  }
+  
+  .counter {
+    padding: 20px;
+    border: 2px solid #007acc;
+    border-radius: 8px;
+    background: white;
+  }
+  
+  .counter-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  
+  .counter-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background: #007acc;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .counter-buttons button:hover {
+    background: #005a9e;
+  }
+  
+  .login-form {
+    padding: 20px;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    background: white;
+    max-width: 400px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .form-group input.error {
+    border-color: #dc3545;
+  }
+  
+  .error-message {
+    color: #dc3545;
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .color-picker {
+    padding: 20px;
+    border: 2px solid #ff6b6b;
+    border-radius: 8px;
+    background: white;
+  }
+  
+  .color-options {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 15px 0;
+  }
+  
+  .color-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: transform 0.2s;
+  }
+  
+  .color-option:hover {
+    transform: scale(1.1);
+  }
+  
+  .color-option.selected {
+    border-color: #333;
+    transform: scale(1.2);
+  }
+  
+  .selected-color {
+    margin-top: 15px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+  }
+  
+  .color-preview {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  
+  .todo-list {
+    padding: 20px;
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    background: white;
+    max-width: 400px;
+  }
+  
+  .todo-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .todo-input input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .todo-input button {
+    padding: 8px 16px;
+    background: #ffc107;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .todos {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+  }
+  
+  .todos li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .todos li.completed span {
+    text-decoration: line-through;
+    color: #888;
+  }
+  
+  .todos li span {
+    cursor: pointer;
+    flex: 1;
+  }
+  
+  .todos li button {
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .no-todos {
+    color: #888;
+    font-style: italic;
+  }
+  
+  .search-box {
+    padding: 20px;
+    border: 2px solid #6f42c1;
+    border-radius: 8px;
+    background: white;
+    max-width: 400px;
+  }
+  
+  .search-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .search-input input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .search-input button {
+    background: #6f42c1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 30px;
+    cursor: pointer;
+  }
+  
+  .search-results {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .search-results li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+  }
+  
+  .search-results li:hover {
+    background: #f8f9fa;
+  }
+  
+  .no-results {
+    color: #888;
+    font-style: italic;
+  }
