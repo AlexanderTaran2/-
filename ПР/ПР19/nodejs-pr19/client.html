@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js API Тестер</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .card { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        button { padding: 10px; margin: 5px; }
+        input { padding: 8px; margin: 5px; width: 200px; }
+        #response { background: #eee; padding: 15px; margin-top: 20px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>Node.js API Тестер</h1>
+    
+    <div class="card">
+        <h3>Пользователи</h3>
+        <button onclick="getUsers()">GET /api/users</button><br>
+        
+        <input type="text" id="userName" placeholder="Имя">
+        <input type="email" id="userEmail" placeholder="Email">
+        <button onclick="createUser()">POST /api/users</button><br>
+        
+        <input type="number" id="userId" placeholder="ID пользователя">
+        <button onclick="getUser()">GET /api/users/:id</button>
+        <button onclick="deleteUser()">DELETE /api/users/:id</button>
+    </div>
+
+    <div class="card">
+        <h3>Товары</h3>
+        <button onclick="getProducts()">GET /api/products</button><br>
+        
+        <input type="text" id="productName" placeholder="Название">
+        <input type="number" id="productPrice" placeholder="Цена">
+        <input type="text" id="productCategory" placeholder="Категория">
+        <button onclick="createProduct()">POST /api/products</button><br>
+        
+        <input type="text" id="searchCategory" placeholder="Категория для поиска">
+        <button onclick="searchProducts()">GET /api/search</button>
+    </div>
+
+    <div id="response">Ответ сервера...</div>
+
+    <script>
+        async function makeRequest(url, options = {}) {
+            try {
+                const response = await fetch(url, options);
+                const data = await response.json();
+                document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('response').textContent = 'Ошибка: ' + error;
+            }
+        }
+
+        function getUsers() { makeRequest('http://localhost:3000/api/users'); }
+        
+        function createUser() {
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+            makeRequest('http://localhost:3000/api/users', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email })
+            });
+        }
+        
+        function getUser() {
+            const id = document.getElementById('userId').value;
+            makeRequest(`http://localhost:3000/api/users/${id}`);
+        }
+        
+        function deleteUser() {
+            const id = document.getElementById('userId').value;
+            makeRequest(`http://localhost:3000/api/users/${id}`, { method: 'DELETE' });
+        }
+        
+        function getProducts() { makeRequest('http://localhost:3000/api/products'); }
+        
+        function createProduct() {
+            const name = document.getElementById('productName').value;
+            const price = document.getElementById('productPrice').value;
+            const category = document.getElementById('productCategory').value;
+            makeRequest('http://localhost:3000/api/products', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, price: Number(price), category })
+            });
+        }
+        
+        function searchProducts() {
+            const category = document.getElementById('searchCategory').value;
+            makeRequest(`http://localhost:3000/api/search?category=${category}`);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "nodejs-pr19",
+  "version": "1.0.0",
+  "description": "Практическая работа №19: Node.js сервер",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "advanced": "node advanced-server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["nodejs", "server", "api"],
+  "author": "Ваше Имя",
+  "license": "ISC"
+}

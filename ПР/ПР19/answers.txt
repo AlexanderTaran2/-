@@ -1,0 +1,40 @@
+1. Что такое Node.js и в чем его преимущества для создания серверов?
+Node.js - это среда выполнения JavaScript на стороне сервера. Преимущества: высокая производительность за счет неблокирующего I/O, один язык для фронтенда и бэкенда, большая экосистема npm, подходит для реального времени.
+2. Как создать простой HTTP-сервер в Node.js?
+javascript
+const http = require('http');
+const server = http.createServer((req, res) => {
+    res.end('Hello World');
+});
+server.listen(3000);
+3. В чем разница между методами GET, POST, PUT и DELETE?
+GET - получение данных (без изменения сервера)
+POST - создание новых данных
+PUT - полное обновление существующих данных
+DELETE - удаление данных
+4. Что такое middleware и для чего оно используется?
+Middleware - промежуточные обработчики, которые выполняются между получением запроса и отправкой ответа. Используются для: логирования, аутентификации, парсинга данных, кеширования, обработки ошибок.
+5. Как обрабатывать различные HTTP-методы для одного URL?
+Проверкой свойства req.method:
+javascript
+if (req.method === 'GET') {
+    // обработка GET
+} else if (req.method === 'POST') {
+    // обработка POST
+}
+6. Что такое CORS и зачем нужны соответствующие заголовки?
+CORS (Cross-Origin Resource Sharing) - механизм безопасности браузеров. Заголовки нужны для разрешения запросов между разными доменами:
+javascript
+res.setHeader('Access-Control-Allow-Origin', '*');
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+7. Как организовать чтение тела POST-запроса в Node.js?
+Через обработку потоков данных:
+javascript
+let body = '';
+req.on('data', chunk => {
+    body += chunk.toString();
+});
+req.on('end', () => {
+    const data = JSON.parse(body);
+    // обработка данных
+});
