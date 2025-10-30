@@ -1,0 +1,147 @@
+1. Какие основные принципы REST архитектуры вы знаете?
+REST (Representational State Transfer) - 6 ключевых принципов:
+Единообразие интерфейса - стандартные HTTP-методы (GET, POST, PUT, DELETE)
+Бессостояние - каждый запрос содержит всю информацию для его обработки
+Кэшируемость - ответы могут кэшироваться на клиенте
+Клиент-серверная архитектура - разделение ответственности
+Слоистая система - клиент не знает о внутренней структуре сервера
+Код по требованию (опционально) - сервер может передавать исполняемый код
+2. В чем разница между HTTP методами PUT и PATCH?
+PUT - полное обновление ресурса:
+javascript
+// PUT /api/books/1 - заменяет ВСЕ поля
+{
+  "title": "Новое название",
+  "author": "Новый автор", 
+  "year": 2024,
+  "pages": 300
+}
+// Результат: книга полностью заменена
+PATCH - частичное обновление ресурса:
+javascript
+// PATCH /api/books/1 - обновляет только указанные поля
+{
+  "title": "Только название изменено"
+}
+// Результат: изменилось только название, остальные поля остались
+3. Какие коды состояния HTTP наиболее часто используются в REST API?
+Успешные (2xx):
+200 OK - успешный запрос
+201 Created - ресурс создан
+204 No Content - успешно, но нет содержимого
+Ошибки клиента (4xx):
+400 Bad Request - неверный запрос
+401 Unauthorized - не авторизован
+403 Forbidden - доступ запрещен
+404 Not Found - ресурс не найден
+409 Conflict - конфликт (например, дублирование)
+Ошиби сервера (5xx):
+500 Internal Server Error - внутренняя ошибка сервера
+4. Что такое ресурсо-ориентированный дизайн URL?
+Ресурсы как существительные в URL:
+text
+ПЛОХО:
+/api/getUser?id=1
+/api/updateUser
+/api/deleteUser
+ХОРОШО (RESTful):
+GET    /api/users/1 - получить пользователя
+POST   /api/users - создать пользователя  
+PUT    /api/users/1- обновить пользователя
+DELETE /api/users/1- удалить пользователя
+Иерархия ресурсов:
+text
+/api/users/1/orders- заказы пользователя 1
+/api/users/1/orders/5- конкретный заказ
+5. Какие преимущества предоставляет пагинация в API?
+Преимущества пагинации:
+Производительность - меньше данных передается за раз
+Скорость ответа - быстрая обработка на сервере
+Экономия трафика - клиент получает только нужную порцию
+Удобство навигации - предсказуемая структура данных
+Масштабируемость - работа с большими наборами данных
+Реализация в нашем API:
+javascript
+// Запрос: GET /api/books?page=2&limit=5
+{
+  "data": [...],
+  "pagination": {
+    "currentPage": 2,
+    "totalPages": 10,
+    "totalBooks": 48,
+    "hasNext": true,
+    "hasPrev": true
+  }
+}
+6. Как организовать валидацию данных в REST API?
+Уровни валидации в нашем проекте:
+Синтаксическая валидация - проверка формата данных:
+javascript
+const validateBook = (book, isUpdate = false) => {
+    const errors = [];
+    if (!book.title) errors.push('Название обязательно');
+    if (book.year < 1000) errors.push('Год некорректный');
+    return errors;
+};
+Бизнес-валидация - проверка логики:
+javascript
+// Проверка уникальности ISBN
+const existingBook = books.find(b => b.isbn === isbn);
+if (existingBook) {
+    return res.status(409).json({ error: 'ISBN уже существует' });
+}
+Валидация типов - проверка форматов:
+javascript
+if (typeof price !== 'number' || price < 0) {
+    return res.status(400).json({ error: 'Цена должна быть числом' });
+}
+7. Какие подходы к обработке ошибок в REST API вы знаете?
+Единый формат ошибок:
+javascript
+{
+  "success": false,
+  "error": "Описание ошибки",
+  "details": ["Дополнительная информация"],
+  "code": "ERROR_CODE"  // опционально
+}
+Централизованная обработка:
+javascript
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).json({
+        success: false,
+        error: 'Внутренняя ошибка сервера'
+    });
+});
+Специфические обработчики:
+javascript
+// 404 - не найден
+res.status(404).json({ error: 'Книга не найдена' });
+// 400 - неверный запрос  
+res.status(400).json({ error: 'Ошибка валидации', details: errors });
+// 409 - конфликт
+res.status(409).json({ error: 'Ресурс уже существует' });
+8. В чем разница между query parameters и path parameters?
+Path Parameters - часть URL пути, обязательные:
+text
+GET /api/books/1          - :id = 1
+GET /api/users/5/orders   - :userId = 5
+Используются для идентификации конкретного ресурса.
+Query Parameters - необязательные параметры после ?:
+text
+GET /api/books?author=Толстой&genre=Роман&page=2
+Используются для:
+Фильтрации (?author=Толстой)
+Сортировки (?sort=title&order=asc)
+Пагинации (?page=2&limit=10)
+Поиска (?search=война)
+В нашем API:
+javascript
+// Path parameter - обязательный
+app.get('/api/books/:id', (req, res) => {
+    const bookId = req.params.id;  // из пути
+});
+// Query parameters - опциональные
+app.get('/api/books', (req, res) => {
+    const { author, genre, page } = req.query;  // из строки запроса
+});

@@ -1,0 +1,16 @@
+{
+  "name": "rest-api-pr21",
+  "version": "1.0.0",
+  "description": "Практическая работа №21: Создание REST API",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "keywords": ["rest", "api", "express", "crud"],
+  "author": "Ваше Имя",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

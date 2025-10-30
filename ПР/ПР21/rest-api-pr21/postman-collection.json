@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "REST API Books PR21",
+    "description": "Коллекция для тестирования REST API книг"
+  },
+  "item": [
+    {
+      "name": "Главная информация",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:3000/api/stats"
+      }
+    },
+    {
+      "name": "Книги",
+      "item": [
+        {
+          "name": "Получить все книги",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:3000/api/books"
+          }
+        },
+        {
+          "name": "Получить книги с фильтрацией",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:3000/api/books?author=Толстой&genre=Роман&available=true&page=1&limit=5"
+          }
+        },
+        {
+          "name": "Получить книгу по ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:3000/api/books/1"
+          }
+        },
+        {
+          "name": "Создать новую книгу",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"1984\",\n  \"author\": \"Джордж Оруэлл\",\n  \"genre\": \"Антиутопия\",\n  \"year\": 1949,\n  \"isbn\": \"978-5-17-090458-4\",\n  \"pages\": 328,\n  \"available\": true\n}"
+            },
+            "url": "http://localhost:3000/api/books"
+          }
+        },
+        {
+          "name": "Полное обновление книги (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Война и мир (обновленное)\",\n  \"author\": \"Лев Толстой\",\n  \"genre\": \"Классическая литература\",\n  \"year\": 1869,\n  \"isbn\": \"978-5-389-07435-4\",\n  \"pages\": 1225,\n  \"available\": true\n}"
+            },
+            "url": "http://localhost:3000/api/books/1"
+          }
+        },
+        {
+          "name": "Частичное обновление книги (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"available\": false,\n  \"pages\": 600\n}"
+            },
+            "url": "http://localhost:3000/api/books/2"
+          }
+        },
+        {
+          "name": "Удалить книгу",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:3000/api/books/3"
+          }
+        }
+      ]
+    }
+  ]
+}
