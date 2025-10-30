@@ -1,0 +1,31 @@
+{
+  "name": "database-pr22",
+  "version": "1.0.0",
+  "description": "Практическая работа №22: Работа с базой данных",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "migrate": "node migrate.js",
+    "seed": "node seeds/seed_data.js",
+    "init-db": "npm run migrate && npm run seed"
+  },
+  "keywords": [
+    "nodejs",
+    "database",
+    "sqlite",
+    "express",
+    "orm"
+  ],
+  "author": "Ваше Имя",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "knex": "^2.5.1",
+    "sqlite3": "^5.1.6",
+    "supertest": "^7.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
