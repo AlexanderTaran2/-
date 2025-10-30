@@ -1,0 +1,173 @@
+Ответы на вопросы для самоконтроля
+1. В чем преимущества использования Express.js по сравнению с чистым Node.js для создания серверов?
+Express.js упрощает разработку:
+Меньше кода - готовые методы для маршрутизации (app.get(), app.post())
+Встроенный роутинг - не нужно парсить URL вручную
+Middleware система - легко добавлять функциональность
+Автоматический парсинг - JSON, формы, куки обрабатываются автоматически
+Обработка ошибок - встроенные механизмы обработки ошибок
+Больше возможностей - статические файлы, шаблоны, сессии
+Пример сравнения:
+javascript
+// Чистый Node.js
+if (req.method === 'GET' && req.url === '/users') {
+  // обработка вручную
+}
+// Express.js
+app.get('/users', (req, res) => {
+  // автоматическая обработка
+});
+2. Что такое middleware в Express.js и каков порядок их выполнения?
+Middleware - это функции, которые имеют доступ к объектам запроса (req), ответа (res) и следующей функции middleware в цикле запрос-ответ.
+Порядок выполнения:
+Последовательно - в порядке их объявления
+Сверху вниз - от первого к последнему
+Обязателен next() - для передачи управления следующему middleware
+javascript
+app.use((req, res, next) => {
+  console.log('Middleware 1');
+  next(); // передает управление следующему
+});
+app.use((req, res, next) => {
+  console.log('Middleware 2');
+  next();
+});
+app.get('/', (req, res) => {
+  res.send('Главная'); // Выполнится последним
+});
+3. Как организовать модульную структуру роутеров в Express приложении?
+Структура через Router():
+javascript
+// routes/users.js
+const router = express.Router();
+router.get('/', (req, res) => {
+  // GET /api/users
+});
+router.get('/:id', (req, res) => {
+  // GET /api/users/1
+});
+module.exports = router;
+// app.js
+const usersRouter = require('./routes/users');
+app.use('/api/users', usersRouter);
+Преимущества модульности:
+Разделение ответственности
+Повторное использование
+Легкое тестирование
+Масштабируемость
+4. Какие методы роутинга поддерживает Express.js и для чего они используются?
+Основные HTTP-методы:
+app.get() - получение данных
+app.post() - создание данных
+app.put() - полное обновление
+app.patch() - частичное обновление
+app.delete() - удаление данных
+Специальные методы:
+app.all() - все HTTP-методы
+app.use() - все методы для middleware
+app.route() - цепочка методов для одного пути
+javascript
+app.route('/users/:id')
+  .get((req, res) => { /* GET */ })
+  .put((req, res) => { /* PUT */ })
+  .delete((req, res) => { /* DELETE */ });
+5. Как обрабатывать параметры URL и query-параметры в Express?
+Параметры URL (route parameters):
+javascript
+// URL: /users/123
+app.get('/users/:id', (req, res) => {
+  const userId = req.params.id; // "123"
+});
+Query-параметры:
+javascript
+// URL: /users?page=1&limit=10
+app.get('/users', (req, res) => {
+  const page = req.query.page;    // "1"
+  const limit = req.query.limit;  // "10"
+});
+Параметры с валидацией:
+javascript
+router.param('id', (req, res, next, id) => {
+  if (isNaN(id)) {
+    return res.status(400).json({ error: 'Invalid ID' });
+  }
+  req.userId = parseInt(id);
+  next();
+});
+6. В чем разница между app.use() и app.METHOD()?
+app.use():
+Для middleware функций
+Работает со ВСЕМИ HTTP-методами
+Может обрабатывать части пути
+Выполняется для всех запросов, соответствующих пути
+app.METHOD():
+Для обработки конкретных HTTP-методов (GET, POST, etc.)
+Точное совпадение пути
+Только для конечных обработчиков
+javascript
+// Middleware - выполняется для ВСЕХ методов
+app.use('/api', (req, res, next) => {
+  console.log('API request');
+  next();
+});
+
+// Обработчик - только для GET запросов
+app.get('/api/users', (req, res) => {
+  res.json(users);
+});
+7. Как организовать централизованную обработку ошибок в Express приложении?
+Middleware с 4 параметрами:
+
+javascript
+// Централизованный обработчик (должен быть последним)
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  
+  res.status(err.status || 500).json({
+    error: {
+      message: err.message,
+      status: err.status || 500,
+      timestamp: new Date().toISOString()
+    }
+  });
+});
+Проброс ошибок:
+javascript
+app.get('/users/:id', (req, res, next) => {
+  const user = users.find(u => u.id === req.params.id);
+  
+  if (!user) {
+    const error = new Error('User not found');
+    error.status = 404;
+    return next(error); // Проброс в обработчик ошибок
+  }
+  res.json(user);
+});
+8. Что такое router.param() и для чего он используется?
+router.param() - middleware, который выполняется когда в route встречается определенный параметр.
+Использование:
+javascript
+router.param('id', (req, res, next, id) => {
+  // Валидация и преобразование
+  const userId = parseInt(id);
+  if (isNaN(userId)) {
+    return res.status(400).json({ error: 'Invalid ID format' });
+  }
+  // Добавление в request object
+  req.userId = userId;
+  // Поиск пользователя (опционально)
+  const user = users.find(u => u.id === userId);
+  if (user) {
+    req.user = user;
+  }
+  next();
+});
+// Теперь во всех роутах с :id доступен req.userId
+router.get('/:id', (req, res) => {
+  // req.userId уже проверен и преобразован
+  res.json(req.user);
+});
+Преимущества:
+Единая точка валидации
+Избежание дублирования кода
+Централизованная обработка параметров

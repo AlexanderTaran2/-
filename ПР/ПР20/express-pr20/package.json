@@ -1,0 +1,16 @@
+{
+  "name": "express-pr20",
+  "version": "1.0.0",
+  "description": "Практическая работа №20: Express.js роутинг",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "keywords": ["express", "nodejs", "api"],
+  "author": "Ваше Имя",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

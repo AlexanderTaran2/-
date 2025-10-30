@@ -1,0 +1,84 @@
+{
+  "info": {
+    "name": "Express.js PR20 API",
+    "description": "Коллекция для тестирования Express.js приложения"
+  },
+  "item": [
+    {
+      "name": "Главная страница",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:3000/"
+      }
+    },
+    {
+      "name": "Документация",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:3000/api/docs"
+      }
+    },
+    {
+      "name": "Пользователи",
+      "item": [
+        {
+          "name": "Получить всех пользователей",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:3000/api/users"
+          }
+        },
+        {
+          "name": "Создать пользователя",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Алексей Новый\",\n  \"email\": \"alexey@example.com\",\n  \"age\": 28\n}"
+            },
+            "url": "http://localhost:3000/api/users"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Товары",
+      "item": [
+        {
+          "name": "Получить все товары",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:3000/api/products"
+          }
+        },
+        {
+          "name": "Создать товар",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Новый товар\",\n  \"price\": 5000,\n  \"category\": \"electronics\",\n  \"inStock\": true\n}"
+            },
+            "url": "http://localhost:3000/api/products"
+          }
+        }
+      ]
+    }
+  ]
+}
