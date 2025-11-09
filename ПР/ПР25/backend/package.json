@@ -1,0 +1,24 @@
+{
+  "name": "praktika24-backend",
+  "version": "1.0.0",
+  "description": "Backend for Praktika 24 - Todo App",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "migrate": "knex migrate:latest",
+    "build": "echo 'No build step needed for Node.js'"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.0",
+    "knex": "^2.4.2",
+    "sqlite3": "^5.1.6",
+    "dotenv": "^16.1.4",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
