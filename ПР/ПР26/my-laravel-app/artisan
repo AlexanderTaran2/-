@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+// Упрощенная версия artisan
+require __DIR__.'/vendor/autoload.php';
+
+echo "Laravel Artisan (упрощенная версия)\n";
+
+if (isset($argv[1])) {
+    switch ($argv[1]) {
+        case 'key:generate':
+            // Генерируем случайный ключ
+            $key = bin2hex(random_bytes(32));
+            file_put_contents('.env', "\nAPP_KEY=base64:{$key}\n", FILE_APPEND);
+            echo "Application key set successfully!\n";
+            break;
+        case 'serve':
+            echo "Server starting at: http://localhost:8000\n";
+            echo "Press Ctrl+C to stop\n";
+            // Просто запускаем встроенный сервер PHP
+            system('php -S localhost:8000 -t public');
+            break;
+        default:
+            echo "Unknown command: {$argv[1]}\n";
+    }
+} else {
+    echo "Available commands:\n";
+    echo "  key:generate - Generate application key\n";
+    echo "  serve - Start development server\n";
+}
+?>

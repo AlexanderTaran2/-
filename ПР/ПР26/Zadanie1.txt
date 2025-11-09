@@ -1,0 +1,40 @@
+Часть A: Анализ проблем
+Выявленные проблемы:
+Уязвимость к SQL-инъекциям: Прямая подстановка $_GET['id'] в запрос.
+Устаревшее расширение mysql: Используются функции mysql_*, которые удалены в современных версиях PHP.
+Смешение логики и представления: HTML-вывод находится прямо в PHP-скрипте.
+Отсутствие обработки ошибок: Нет проверки на успешность подключения к БД или выполнения запроса.
+Часть Б: Рефакторинг проблем
+Улучшенная версия на современном PHP (без фреймворка):
+<?php
+// Настройки
+$host = 'localhost';
+$dbname = 'my_db';
+$user = 'root';
+$pass = '';
+// Обработка входных данных
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+if (!$id) {
+    die("Некорректный ID");
+}
+try {
+    // Подключение через PDO
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Подготовленный запрос
+    $stmt = $pdo->prepare("SELECT name, email FROM users WHERE id = ?");
+    $stmt->execute([$id]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    die("Ошибка базы данных: " . $e->getMessage());
+}
+?>
+<!-- Представление -->
+<?php if ($user): ?>
+    <h1>Данные пользователя</h1>
+    <p>Имя: <?= htmlspecialchars($user['name']) ?></p>
+    <p>Email: <?= htmlspecialchars($user['email']) ?></p>
+<?php else: ?>
+    <p>Пользователь не найден.</p>
+<?php endif; ?>
